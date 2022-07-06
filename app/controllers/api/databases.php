@@ -2279,7 +2279,7 @@ App::patch('/v1/databases/:databaseId/collections/:collectionId/documents/:docum
         $data = \array_merge($document->getArrayCopy(), $data);
 
         $data['$collection'] = $collection->getId(); // Make sure user don't switch collectionID
-        $data['$createdAt'] = $collection->getCreatedAt(); // Make sure user don't switch createdAt
+        $data['$createdAt'] = $document->getCreatedAt(); // Make sure user don't switch createdAt
         $data['$id'] = $document->getId(); // Make sure user don't switch document unique ID
         $data['$read'] = (is_null($read)) ? ($document->getRead() ?? []) : $read; // By default inherit read permissions
         $data['$write'] = (is_null($write)) ? ($document->getWrite() ?? []) : $write; // By default inherit write permissions
@@ -2669,7 +2669,7 @@ App::get('/v1/databases/:databaseId/usage')
     });
 
 App::get('/v1/databases/:databaseId/collections/:collectionId/usage')
-    ->alias('/v1/database/collections/:collectionId/documents', ['databaseId' => 'default'])
+    ->alias('/v1/database/:collectionId/usage', ['databaseId' => 'default'])
     ->desc('Get usage stats for a collection')
     ->groups(['api', 'database'])
     ->label('scope', 'collections.read')
