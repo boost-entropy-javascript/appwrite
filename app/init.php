@@ -33,8 +33,8 @@ use Appwrite\Extend\PDO;
 use Appwrite\GraphQL\Promises\Adapter\Swoole;
 use Appwrite\GraphQL\Schema;
 use Appwrite\Network\Validator\Email;
-use Appwrite\Network\Validator\IP;
-use Appwrite\Network\Validator\URL;
+use Utopia\Validator\IP;
+use Utopia\Validator\URL;
 use Appwrite\OpenSSL\OpenSSL;
 use Appwrite\Usage\Stats;
 use MaxMind\Db\Reader;
@@ -604,7 +604,7 @@ $register->set('smtp', function () {
     return $mail;
 });
 $register->set('geodb', function () {
-    return new Reader(__DIR__ . '/assets/dbip/dbip-country-lite-2022-06.mmdb');
+    return new Reader(__DIR__ . '/assets/dbip/dbip-country-lite-2023-01.mmdb');
 });
 $register->set('db', function () {
  // This is usually for our workers or CLI commands scope
